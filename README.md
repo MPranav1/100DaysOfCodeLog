@@ -14,6 +14,6 @@ Progress Tracking
 Explore the Progress Log by navigating to the directory containing the text file with my account link on the coding platform.
 
 # Connect with Me
-Let's connect and learn together! Feel free to reach out, share feedback, or join me on this coding adventure. You can find me on Twitter: @MPranav_M and LinkedIn: https://www.linkedin.com/in/pranav-maheshwari-cydf
+Let's connect and learn together! Feel free to reach out, share feedback, or join me on this coding adventure. You can find me on  Twitter: @MPranav_M and Linkedin
 
 Happy coding! 🚀✨
