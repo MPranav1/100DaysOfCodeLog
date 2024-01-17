@@ -2,7 +2,7 @@
 Welcome to my 100 Days of Code journey repository – CodeCentennialQuest! 🚀
 
 ### Overview
-This repository documents my daily coding progress over the course of 100 days. Each day, I'll be tackling coding challenges, honing my skills across programming languages on [Leetcode](https://leetcode.com/MPranav_1/) and other similar platform
+This repository documents my daily coding progress over the course of 100 days. Each day, I'll be tackling coding challenges, honing my skills across programming languages on [Leetcode](https://leetcode.com/MPranav_1/) and other similar platform like [GeeksForGeeks](https://auth.geeksforgeeks.org/user/maheshwaripranav04) and [CodeChef](https://www.codechef.com/users/mpranav_1)
 
 ### Motivation
 Embarking on this 100DaysOfCodeLog is not just a personal challenge; it's a commitment to continuous learning and growth in the vast landscape of coding. I'll be sharing my experiences, insights, and the code I've written throughout this exciting journey.
