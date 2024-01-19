@@ -1,0 +1,26 @@
+//Link to the Question (https://leetcode.com/problems/valid-anagram/submissions/1121225575/?envType=daily-question&envId=2023-12-16)
+
+class Solution {
+public:
+    bool isAnagram(string s, string t) {
+         if (s.length() != t.length()) {
+            return false;
+        }
+        unordered_map<char, int> charFrequency;
+        for (char c : s) {
+            charFrequency[c]++;
+        }
+        for (char c : t) {
+            charFrequency[c]--;
+            if (charFrequency[c] < 0) {
+                return false;
+            }
+        }
+        for (auto& entry : charFrequency) {
+            if (entry.second != 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+};
