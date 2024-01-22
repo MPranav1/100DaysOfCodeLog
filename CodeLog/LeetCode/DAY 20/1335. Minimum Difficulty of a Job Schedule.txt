@@ -1,0 +1,27 @@
+//Link to the Question (https://leetcode.com/problems/minimum-difficulty-of-a-job-schedule/submissions/1131595099/?envType=daily-question&envId=2023-12-29)
+
+class Solution {
+public:
+    int help(vector<int>&j , int d , int start,vector<vector<int>>&dp){
+        if(start==j.size()){
+            if(d==0) return 0;
+            return 1e9;
+        }
+        if(d<=0) return 1e9;
+        if(dp[start][d]!=-1) return dp[start][d];
+        int ele=INT_MIN;
+        int ans=INT_MAX;
+        for(int i=start;i<j.size();i++){
+            ele=max(ele,j[i]);
+            int t=ele+help(j,d-1,i+1,dp);
+            ans=min(ans,t);
+        }
+        return dp[start][d]=ans;
+    }
+    int minDifficulty(vector<int>& j, int d) {
+        vector<vector<int>> dp(j.size(),vector<int>(d+1,-1));
+        int ans= help(j,d,0,dp);  
+        if(ans>=1e9) return -1;
+        return ans;
+    }
+};
