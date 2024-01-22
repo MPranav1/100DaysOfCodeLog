@@ -1,0 +1,22 @@
+//Link to the Question (https://leetcode.com/problems/redistribute-characters-to-make-all-strings-equal/submissions/1132353934/?envType=daily-question&envId=2023-12-30)
+
+
+class Solution {
+public:
+    bool makeEqual(vector<string>& words) {
+        unordered_map<char, int> charCount;
+        for (const string& word : words) {
+            for (char ch : word) {
+                charCount[ch]++;
+            }
+        }
+        int numWords = words.size();
+        for (const auto& pair : charCount) {
+            if (pair.second % numWords != 0) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+};
