@@ -1,0 +1,60 @@
+//Link to the Question (https://leetcode.com/problems/amount-of-time-for-binary-tree-to-be-infected/submissions/1142584962/?envType=daily-question&envId=2024-01-10)
+
+
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    int amountOfTime(TreeNode* root, int start) {
+        unordered_map<int, TreeNode*> backEdge;
+        unordered_set<int> visited;
+        queue<TreeNode*> q;
+
+        TreeNode* startEdge = nullptr;
+        int totalNodes = 0;
+        std::function<void(TreeNode*)> dfs = [&](TreeNode* node) {
+            if (!node) return;
+            if (node->left) backEdge[node->left->val] = node;
+            if (node->right) backEdge[node->right->val] = node;
+            if (node->val == start) startEdge = node;
+            dfs(node->left);
+            dfs(node->right);
+            totalNodes++;
+        };
+
+        dfs(root);
+        q.push(startEdge);
+        int minutes = 0;
+
+        while (!q.empty()) {
+            int size = q.size();
+            while (size--) {
+                TreeNode* currentEdge = q.front();
+                q.pop();
+
+                if (visited.count(currentEdge->val)) continue;
+                visited.insert(currentEdge->val);
+
+                if (visited.size() == totalNodes) return minutes;
+
+                if (backEdge.count(currentEdge->val)) q.push(backEdge[currentEdge->val]);
+                if (currentEdge->left) q.push(currentEdge->left);
+                if (currentEdge->right) q.push(currentEdge->right);
+            }
+
+            minutes++;
+        }
+
+        return 0;
+    }
+};
