@@ -1,0 +1,23 @@
+//Link to the Question (https://leetcode.com/problems/minimum-number-of-steps-to-make-two-strings-anagram/submissions/1144971752/?envType=daily-question&envId=2024-01-13)
+
+
+class Solution {
+public:
+    int minSteps(std::string s, std::string t) {
+        vector<int> r1(26, 0), r2(26, 0);
+        for (char c : s) {
+            r1[c - 'a']++;
+        }
+        for (char c : t) {
+            r2[c - 'a']++;
+        }
+        int ans = 0;
+        for (int i = 0; i < 26; i++) {
+            if (r2[i] > r1[i]) {
+                ans += r2[i] - r1[i];
+            }
+        }
+
+        return ans;
+    }
+};
