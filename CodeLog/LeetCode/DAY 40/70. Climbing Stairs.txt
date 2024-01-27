@@ -1,0 +1,19 @@
+//Link to the Question (https://leetcode.com/problems/climbing-stairs/submissions/1149644063/?envType=daily-question&envId=2024-01-18)
+
+class Solution {
+public:
+    int climbStairs(int n) {
+        if (n <= 2)
+            return n;
+        else{
+        int first = 1; 
+        int second = 2;
+        for (int i = 3; i <= n; ++i) {
+            int current = first + second;
+            first = second;
+            second = current;
+        }
+        return second;
+    }
+    }
+};
