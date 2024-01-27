@@ -1,0 +1,34 @@
+//Link to the Question (https://leetcode.com/problems/sum-of-subarray-minimums/submissions/1151416197/?envType=daily-question&envId=2024-01-20)
+
+class Solution {
+public:
+    int sumSubarrayMins(vector<int>& arr) {
+        const int MOD = 1e9 + 7;
+        int n = arr.size();
+        stack<int> st;
+        vector<int> left(n), right(n);
+        for (int i = 0; i < n; ++i) {
+            while (!st.empty() && arr[st.top()] >= arr[i]) {
+                st.pop();
+            }
+            left[i] = st.empty() ? -1 : st.top();
+            st.push(i);
+        }
+        while (!st.empty()) {
+            st.pop();
+        }
+        for (int i = n - 1; i >= 0; --i) {
+            while (!st.empty() && arr[st.top()] > arr[i]) {
+                st.pop();
+            }
+            right[i] = st.empty() ? n : st.top();
+            st.push(i);
+        }
+        long long result = 0;
+        for (int i = 0; i < n; ++i) {
+            result = (result + (long long)arr[i] * (i - left[i]) * (right[i] - i)) % MOD;
+        }
+
+        return static_cast<int>(result);
+    }
+};
