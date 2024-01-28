@@ -1,0 +1,40 @@
+//Link to the Question (https://leetcode.com/problems/maximum-length-of-a-concatenated-string-with-unique-characters/submissions/1154525657/?envType=daily-question&envId=2024-01-23)
+
+
+class Solution {
+public:
+    bool hasDup(string s1, string s2){
+        set<char> st;
+        for(char s : s1){
+            st.insert(s);
+        }
+        for(auto s : s2){
+            if(st.find(s)!=st.end()){ 
+                return true;
+            }
+            st.insert(s);
+        }
+        return false;
+    }
+
+    int fun(int i, int n, vector<string>& arr,string ans){
+        if(i>=n) return ans.size();
+
+        int take = 0;
+        int not_take = 0;
+
+        if(hasDup(ans,arr[i])) {
+            not_take = fun(i+1,n,arr,ans);
+        }else{
+            take = fun(i+1,n,arr,ans+arr[i]);
+            not_take = fun(i+1,n,arr,ans);
+        }
+        return max(take,not_take);
+    }
+
+    int maxLength(vector<string>& arr) {
+        int n = arr.size();
+        string ans = "";
+        return fun(0,n,arr,ans);
+    }
+};
