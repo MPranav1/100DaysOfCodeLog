@@ -1,0 +1,30 @@
+//Link to the Question (https://leetcode.com/problems/out-of-boundary-paths/submissions/1157559021/?envType=daily-question&envId=2024-01-26)
+
+class Solution {
+public:
+    int mod = 1e9 + 7;
+    long long dp[51][51][51];
+
+    long long maxPath(int m, int n, int mv, int x, int y) {
+        if (x == m || y == n || x == -1 || y == -1)
+            return 1;
+
+        if (mv == 0)
+            return 0;
+
+        if (dp[x][y][mv] != -1)
+            return dp[x][y][mv];
+
+        long long a = maxPath(m, n, mv - 1, x - 1, y) % mod;
+        long long b = maxPath(m, n, mv - 1, x, y - 1) % mod;
+        long long c = maxPath(m, n, mv - 1, x + 1, y) % mod;
+        long long d = maxPath(m, n, mv - 1, x, y + 1) % mod;
+
+        return dp[x][y][mv] = (a + b + c + d) % mod;
+    }
+
+    long long findPaths(int m, int n, int maxMove, int startRow, int startColumn) {
+        memset(dp, -1, sizeof(dp));
+        return maxPath(m, n, maxMove, startRow, startColumn);
+    }
+};
