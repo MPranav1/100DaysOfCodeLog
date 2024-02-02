@@ -1,0 +1,19 @@
+//Link to the Question (https://leetcode.com/problems/divide-array-into-arrays-with-max-difference/submissions/1162765507/?envType=daily-question&envId=2024-02-01)
+
+class Solution {
+public:
+    vector<vector<int>> divideArray(vector<int>& nums, int k) {
+        sort(nums.begin(), nums.end());
+        for (int i = 0; i < nums.size(); i += 3) {
+            if (i + 2 < nums.size() && nums[i + 2] - nums[i] > k) {
+                return {};
+            }
+        }
+        vector<vector<int>> result;
+        for (int i = 0; i < nums.size(); i += 3) {
+            vector<int> group(nums.begin() + i, nums.begin() + i + 3);
+            result.push_back(group);
+        }
+        return result;
+    }
+};
