@@ -1,0 +1,40 @@
+//Link to the Question (https://leetcode.com/problems/evaluate-reverse-polish-notation/submissions/1160838984/?envType=daily-question&envId=2024-01-30)
+
+class Solution {
+public:
+    int evalRPN(vector<string>& tokens) {
+        stack<int> operands;
+
+        for (const string& token : tokens) {
+            if (isOperator(token)) {
+                int operand2 = operands.top();
+                operands.pop();
+                int operand1 = operands.top();
+                operands.pop();
+                int result = performOperation(token, operand1, operand2);
+                operands.push(result);
+            } else {
+                operands.push(stoi(token));
+            }
+        }
+        return operands.top();
+    }
+
+private:
+    bool isOperator(const string& token) {
+        return token == "+" || token == "-" || token == "*" || token == "/";
+    }
+
+    int performOperation(const string& op, int operand1, int operand2) {
+        if (op == "+") {
+            return operand1 + operand2;
+        } else if (op == "-") {
+            return operand1 - operand2;
+        } else if (op == "*") {
+            return operand1 * operand2;
+        } else if (op == "/") {
+            return operand1 / operand2;
+        }
+        return 0;
+    }
+};
