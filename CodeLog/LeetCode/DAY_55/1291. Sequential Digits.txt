@@ -1,0 +1,19 @@
+//Link to the Question (https://leetcode.com/problems/sequential-digits/submissions/1164117181/?envType=daily-question&envId=2024-02-02)
+
+class Solution {
+public:
+    vector<int> sequentialDigits(int low, int high) {
+        vector<int> result;
+        for (int digit = 1; digit <= 9; ++digit) {
+            int num = digit;
+            for (int nextDigit = digit + 1; nextDigit <= 9; ++nextDigit) {
+                num = num * 10 + nextDigit;
+                if (num >= low && num <= high) {
+                    result.push_back(num);
+                }
+            }
+        }
+        sort(result.begin(), result.end());
+        return result;
+    }
+};
