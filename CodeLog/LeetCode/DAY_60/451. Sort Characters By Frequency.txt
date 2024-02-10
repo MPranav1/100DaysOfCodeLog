@@ -1,0 +1,22 @@
+//Link to the Question (https://leetcode.com/problems/sort-characters-by-frequency/submissions/1168933901/?envType=daily-question&envId=2024-02-07)
+
+
+class Solution {
+public:
+    string frequencySort(string s) {
+        unordered_map<char, int> freq;
+        for (char c : s) {
+            freq[c]++;
+        }
+        vector<pair<char, int>> freqVec(freq.begin(), freq.end());
+        sort(freqVec.begin(), freqVec.end(), [](const auto& a, const auto& b) {
+            return a.second > b.second;
+        });
+        string result;
+        for (const auto& pair : freqVec) {
+            result.append(pair.second, pair.first);
+        }
+        
+        return result;
+    }
+};
